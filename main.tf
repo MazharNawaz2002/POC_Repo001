@@ -29,7 +29,6 @@ resource "aws_lambda_function" "POC_lambda" {
   function_name = "my_first_task_poc"
   role          = aws_iam_role.my_first_task_poc_iam.arn
   handler       = "first_fun.lambda_handler"
-  layers = ["arn:aws:lambda:us-west-2:336392948345:layer:AWSSDKPandas-Python312:9"]
 
   source_code_hash = data.archive_file.lambda.output_base64sha256
 
