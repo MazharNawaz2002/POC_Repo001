@@ -11,8 +11,8 @@ data "aws_iam_policy_document" "assume_role" {
   }
 }
 
-resource "aws_iam_role" "iam_for_lambda" {
-  name               = "iam_for_lambda"
+resource "aws_iam_role" "iam_for_my_first_task_poc" {
+  name               = "iam_for_my_first_task_poc"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
@@ -27,7 +27,7 @@ resource "aws_lambda_function" "test_lambda1" {
   # path.module in the filename.
   filename      = "lambda_function_payload.zip"
   function_name = "my_first_task_poc"
-  role          = aws_iam_role.iam_for_lambda.arn
+  role          = aws_iam_role.iam_for_my_first_task_poc.arn
   handler       = "first_fun.lambda_handler"
   layers = ["arn:aws:lambda:us-west-2:336392948345:layer:AWSSDKPandas-Python312:9"]
 
