@@ -26,7 +26,7 @@ resource "aws_lambda_function" "test_lambda1" {
   # If the file is not in the current working directory you will need to include a
   # path.module in the filename.
   filename      = "lambda_function_payload.zip"
-  function_name = "my_first_terraform_function_002"
+  function_name = "my_first_task_poc"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "first_fun.lambda_handler"
   layers = ["arn:aws:lambda:us-west-2:336392948345:layer:AWSSDKPandas-Python312:9"]
