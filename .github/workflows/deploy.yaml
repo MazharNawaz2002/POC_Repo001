@@ -32,15 +32,11 @@ jobs:
         with:
           terraform_version: 1.5.0
 
-      # Step 4: Terraform Init
-      - name: Terraform Init
-        run: terraform init
-
-      # Step 5: Terraform Plan
+      # Step 4: Terraform Plan
       - name: Terraform Plan
         run: terraform plan
 
-      # Step 6: Terraform Apply (on main branch only)
+      # Step 5: Terraform Apply (on main branch only)
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
