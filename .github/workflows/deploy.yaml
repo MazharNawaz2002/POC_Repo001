@@ -27,11 +27,27 @@ jobs:
           aws-secret-access-key: ${{ secrets.aws_secret_access_key }}
           aws-region: us-east-1
 
-      # Step 5: Terraform Plan
+      # Step 4: Terraform Init (only if no previous state)
+      - name: Check Terraform Init
+        id: init_check
+        run: |
+          if [ ! -d .terraform ]; then
+            echo "need to initialize terraform"
+            echo "::set-output name=needs_init::true"
+          else
+            echo "::set-output name=needs_init::false"
+          fi
+
+      # Step 5: Terraform Init (conditionally)
+      - name: Terraform Init
+        if: steps.init_check.outputs.needs_init == 'true'
+        run: terraform init
+
+      # Step 6: Terraform Plan
       - name: Terraform Plan
         run: terraform plan
 
-      # Step 6: Terraform Apply (only on main branch)
+      # Step 7: Terraform Apply (only on main branch)
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
