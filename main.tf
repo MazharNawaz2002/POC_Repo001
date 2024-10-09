@@ -18,7 +18,7 @@ resource "aws_iam_role" "iam_for_lambda" {
 
 data "archive_file" "lambda" {
   type        = "zip"
-  source_file = "C:/Users/Kavtech/Documents/AWS PRACTICE/Transformation/first_fun.py"
+  source_file = "first_fun.py"
   output_path = "lambda_function_payload.zip"
 }
 
