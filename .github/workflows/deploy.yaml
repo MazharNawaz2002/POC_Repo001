@@ -32,8 +32,8 @@ jobs:
         with:
           terraform_version: 1.5.0
 
-      - name: Change Directory to my folder
-        run: cd my folder
+      - name: Change Directory to "my folder"
+        run: cd "my folder"
 
       # Step 4: Terraform Plan
       - name: Terraform Plan
